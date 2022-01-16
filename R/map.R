@@ -23,3 +23,4 @@ leaflet() %>%
   addMarkers(data = city_info,
              lng = ~Longitude, 
              lat = ~Latitude)
+

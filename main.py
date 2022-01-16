@@ -1,15 +1,11 @@
 import requests
 import pandas as pd
 
-from bs4 import BeautifulSoup
-world_cities = requests.get('https://worldpopulationreview.com/world-cities/')
-cities = BeautifulSoup(world_cities.text,'lxml')
-
 city_list = pd.read_excel('C:/Users/chunrong/Documents/city.xlsx')
 city_names = city_list['City']
 
 world_temperatures = []
-for i in range(49):
+for i in range(47):
     # Extracting the city name and assigning it to 'q'
 
     weather = 'http://api.openweathermap.org/data/2.5/weather'
@@ -18,8 +14,6 @@ for i in range(49):
               'units': 'metric'}
     # Sending the request to OWM using our function
     response = requests.get(weather, params)
-
-    print(response.status_code)
 
     if response.status_code != 200:
         continue
@@ -30,6 +24,7 @@ for i in range(49):
     country = city_info['sys']['country']
     latitude = city_info['coord']['lat']
     longitude = city_info['coord']['lon']
+    condition = city_info['weather'][0]['main']
     weather_condition = city_info['weather'][0]['description']
     temperature = city_info['main']['feels_like']
     max_temp = city_info['main']['temp_max']
@@ -38,6 +33,7 @@ for i in range(49):
     # For each city, compile data in a dictionary
     city_data = {'City': city_names[i],
                  'Country': country,
+                 'Condition': condition,
                  'Latitude': latitude,
                  'Longitude': longitude,
                  'Weather': weather_condition,
