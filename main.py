@@ -29,6 +29,7 @@ for i in range(47):
     temperature = city_info['main']['feels_like']
     max_temp = city_info['main']['temp_max']
     min_temp = city_info['main']['temp_min']
+    wind = city_info['wind']['speed']
 
     # For each city, compile data in a dictionary
     city_data = {'City': city_names[i],
@@ -39,7 +40,8 @@ for i in range(47):
                  'Weather': weather_condition,
                  'Temperature': temperature,
                  'Temperature Max (C)': max_temp,
-                 'Temperature Min (C)': min_temp}
+                 'Temperature Min (C)': min_temp,
+                 'Wind': wind}
 
     # Append each city's info to the list
     world_temperatures.append(city_data)
