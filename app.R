@@ -140,7 +140,7 @@ ui <- navbarPage("Weather Forecast App",
 
 #server
 server <- function(input, output, session) {
-  owmr_settings("32ca7af3c42c866e1e969582df5dca5e")
+  owmr_settings("")
   
   weatherIcons <- iconList(
     Clear= makeIcon(iconUrl="sun.png",iconWidth=20,iconHeight=20),
